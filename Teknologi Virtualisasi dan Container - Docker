@@ -1,0 +1,136 @@
+# Praktikum Teknologi Teknologi Cloud Computing - Minggu 07
+
+## Materi
+
+**Teknologi Virtualisasi dan *Container* - Docker**
+
+## Tujuan
+
+1.  Mahasiswa memahami pengertian container dan keterkaitannya dengan Docker
+2.  Mahasiswa memahami dan mampu menggunakan Docker untuk mengambil image, menjalankan, serta menghentikan container.
+3.  Mahasiswa memahami dan mampu menggunakan Docker untuk mengelola container.
+
+## Pembahasan
+
+1.  Pengertian *container* dan keterkaitannya dengan Docker
+1.  Instalasi Docker
+
+## Software yang Diperlukan
+
+* Sistem Operasi: Linux, Windows, Mac, FreeBSD, dan sistem operasi lain yang mendukung 
+* [Docker](https://docs.docker.com/get-docker/).
+
+## Pembelajaran
+
+```
+Materi dan Penjelasan
+```
+
+1.  [OS-Level Virtualization](https://en.wikipedia.org/wiki/OS-level_virtualization)
+2.  [Artikel tentang Docker di Wikipedia](https://en.wikipedia.org/wiki/Docker_(software))
+3.  [Instalasi Docker](https://docs.docker.com/install/)
+4.  [Get Started - Docker](https://docs.docker.com/get-started/)
+5.  [Dokumentasi DockerHub](https://docs.docker.com/docker-hub/)
+
+```
+Latihan
+```
+
+1.  Install Docker sesuai petunjuk pada `Materi dan Pembahasan` di atas, sesuaikan dengan OS yang anda gunakan.
+Pada Linux:
+
+Buka terminal.
+Ikuti instruksi pada situs resmi Docker untuk menginstal Docker pada distribusi Linux yang Anda gunakan.
+Pada Windows:
+
+Unduh installer Docker Desktop dari situs resmi Docker.
+Jalankan installer dan ikuti instruksi yang diberikan dalam proses instalasi.
+Langkah 2: Jalankan Kontainer MySQL Menggunakan Docker
+
+Buka terminal atau PowerShell (di Windows).
+
+Jalankan perintah berikut untuk mengunduh dan menjalankan kontainer MySQL:
+docker run -d --name mysql-container -e MYSQL_ROOT_PASSWORD=yourpassword -p 3306:3306 mysql:latest
+
+Ganti yourpassword dengan kata sandi root MySQL yang ingin Anda atur.
+
+Tunggu hingga kontainer MySQL berhasil berjalan. Anda dapat memeriksa statusnya dengan perintah.
+docker ps
+Langkah 3: Jalankan Kontainer MongoDB Menggunakan Docker
+
+Buka terminal atau PowerShell (di Windows).
+
+Jalankan perintah berikut untuk mengunduh dan menjalankan kontainer MongoDB:
+Tunggu hingga kontainer MongoDB berhasil berjalan. Anda dapat memeriksa statusnya dengan perintah:
+Sekarang, Anda telah berhasil menginstal Docker dan menjalankan kontainer MySQL serta MongoDB. Kontainer akan berjalan dalam latar belakang. Anda dapat mengakses MySQL melalui port 3306 dan MongoDB melalui port 27017.
+
+
+Pastikan Anda mengacu pada dokumentasi resmi Docker dan instruksi spesifik untuk sistem operasi Anda jika Anda mengalami masalah atau ingin memahami lebih lanjut tentang penggunaan Docker.
+
+
+Langkah 1: Mencari Image di DockerHub:
+
+Buka browser dan kunjungi situs DockerHub: https://hub.docker.com/ Di halaman utama DockerHub, gunakan bilah pencarian untuk mencari image yang menarik bagi Anda. Misalnya, "nginx" untuk mencari image server web Nginx.
+
+Langkah 2: Mengambil dan Menjalankan Image:
+
+Setelah Anda menemukan image yang menarik, temukan perintah untuk mengambil dan menjalankan image tersebut. Ini akan terlihat seperti: docker run -d --name container-name image-name:tag
+
+
+Ganti container-name dengan nama yang Anda inginkan untuk kontainer dan image-name:tag dengan nama image dan tag yang sesuai. Buka terminal atau PowerShell dan jalankan perintah untuk mengambil dan menjalankan image.
+
+Langkah 3: Dokumentasi Penggunaan Image:
+
+Buatlah dokumentasi untuk langkah-langkah yang telah Anda lakukan:
+
+Deskripsi Image: Tulis deskripsi singkat tentang image Docker yang Anda jalankan, serta tujuan atau kegunaannya.Langkah-langkah Instalasi: Berikan langkah-langkah untuk mengambil dan menjalankan image, termasuk perintah yang Anda gunakan. Konfigurasi Kontainer (Opsional): Jika diperlukan, berikan informasi tentang konfigurasi kontainer yang mungkin Anda perlukan (misalnya, pengaturan lingkungan atau port).
+
+Penggunaan Kontainer: Jelaskan cara mengakses kontainer yang sedang berjalan. Apakah Anda perlu membuka browser atau akses melalui terminal? Berikan contoh perintah atau URL yang relevan.
+
+Dampak dan Manfaat: Diskusikan dampak atau manfaat dari menjalankan kontainer ini. Apa yang bisa Anda pelajari dari ini? Bagaimana hal ini dapat diterapkan dalam pengembangan atau pengujian aplikasi?
+
+Catatan Penting (Opsional): Jika ada hal-hal penting yang perlu diperhatikan atau masalah yang Anda temui selama penggunaan, sertakan catatan ini.
+
+Dengan melakukan langkah-langkah di atas, Anda akan dapat membuat dokumentasi yang jelas dan informatif tentang penggunaan image Docker dari Docker Hub. Pastikan Anda merujuk ke dokumentasi resmi Docker dan konten yang diberikan oleh pemilik image jika Anda memerlukan informasi lebih lanjut.
+
+
+
+2.  Kerjakan no 4 pada `Materi dan Penjelasan` di atas.
+
+```
+Tugas
+```
+
+Carilah image yang menarik untuk anda di DockerHub, coba jalankan dan buatlah dokumentasi tentang tugas ini.
+Panduan Menjalankan Gambar Docker dari DockerHub
+Dalam panduan ini, kita akan menjalankan sebuah gambar Docker yang telah diunggah ke DockerHub.
+
+Langkah 1: Install Docker
+Pastikan Anda memiliki Docker terinstal di sistem Anda. Jika belum, Anda dapat mengunduhnya dari situs resmi Docker dan mengikuti petunjuk instalasinya sesuai dengan sistem operasi yang Anda gunakan.
+
+Langkah 2: Cari Gambar di DockerHub
+Buka DockerHub di browser Anda. Cari gambar yang ingin Anda jalankan dengan menggunakan kotak pencarian. Setelah menemukan gambar yang menarik perhatian Anda, catatlah nama gambar tersebut.
+
+Langkah 3: Menjalankan Gambar Docker
+Buka terminal atau command prompt di sistem Anda.
+
+Jalankan perintah berikut untuk mengunduh dan menjalankan gambar Docker:
+docker run <nama_gambar>
+Gantilah <nama_gambar> dengan nama gambar Docker yang Anda catat sebelumnya.
+
+Langkah 4: Dokumentasi
+Berikut adalah beberapa poin yang bisa Anda sertakan dalam dokumentasi tugas ini:
+
+Deskripsi Tugas: Jelaskan tujuan dari tugas ini, yaitu untuk menjalankan gambar Docker yang menarik dari DockerHub.
+
+Langkah-langkah: Tampilkan langkah-langkah yang telah dijelaskan di atas dengan lebih rinci. Sertakan perintah-perintah yang digunakan dan deskripsi singkat mengenai setiap langkah.
+
+Hasil dan Pengamatan: Setelah menjalankan gambar Docker, sertakan tangkapan layar dari terminal atau command prompt yang menunjukkan output dari kontainer Docker yang berjalan. Jika gambar tersebut memiliki antarmuka web, berikan tangkapan layar dari browser yang menunjukkan antarmuka tersebut.
+
+Kesimpulan: Berikan kesimpulan tentang tugas ini, pengalaman Anda dalam menjalankan gambar Docker, dan apa yang Anda pelajari dari tugas ini.
+Catatan Tambahan: Jika Anda menghadapi kendala atau masalah selama tugas, sertakan catatan mengenai masalah tersebut beserta solusi atau langkah yang telah Anda lakukan untuk mengatasinya.
+
+Langkah 5: Penyelesaian dan Publikasi
+Setelah Anda menyelesaikan dokumentasi, Anda dapat menyimpannya dalam format yang Anda suka, seperti file teks, dokumen Microsoft Word, atau format lainnya. Anda juga dapat membagikan dokumentasi ini dengan rekan-rekan Anda atau menyimpannya untuk referensi pribadi.
+
+Pastikan untuk menyesuaikan langkah-langkah di atas dengan situasi dan gambar Docker yang Anda pilih. Jangan lupa untuk selalu berhati-hati saat menjalankan gambar Docker yang tidak dikenal, dan pastikan gambar tersebut berasal dari sumber terpercaya.
