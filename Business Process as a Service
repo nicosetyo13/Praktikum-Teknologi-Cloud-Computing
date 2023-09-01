@@ -1,0 +1,120 @@
+# Praktikum Teknologi Basis Data - Minggu 5
+
+## Materi
+
+**Business Process as a Service**
+
+## Tujuan
+
+1.  Mahasiswa memahami pengertian BPaaS dan bisa menguraikan berbagai komponen yang membentuk BPaaS tersebut.
+2.  Mahasiswa memahami dan mampu mencari berbagai produk BPaaS untuk keperluan mengelola proses bisnis pada suatu organisasi.
+3.  Mahasiswa memahami gambaran umum Apache OFBiz.
+4.  Mahasiswa mampu melakukan instalasi Apache OFBiz untuk keperluan *on-premise*.
+5.  Mahasiswa memahami dan mampu menggunakan Apache OFBiz untuk keperluan dasar mengelola proses bisnis.
+
+## Pembahasan
+
+1.  Memahami BPaaS
+2.  Berbagai provider yang menawarkan BPaaS
+3.  Gambaran umum Apache OFBiz
+4.  Instalasi Apache OFBiz
+5.  Operasi dasar Apache OFBiz
+
+## Software yang Diperlukan
+
+* Sistem Operasi: Linux, Windows, Mac, FreeBSD, dan sistem operasi lain yang mendukung 
+* [Java - JDK 8](https://www.oracle.com/java/technologies/javase-downloads.html).
+* [Apache OFBiz](https://ofbiz.apache.org/download.html).
+
+## Pembelajaran
+
+```
+Materi dan Penjelasan
+```
+
+1.  Baca dan pahami penjelasan tentang BPaaS di artikel-artikel berikut ini:
+    * [Artikel tentang BPaaS dari IBM](https://www.ibm.com/blogs/cloud-computing/2011/12/19/business-process-as-a-service-bpaas-delivered-from-the-cloud/).
+    * [Artikel tentang BPaaS dari Orienge](http://www.orienge.com/blog/bpaas_model_diagram_advantages_and_prospects).
+2.  Carilah berbagai provider BPaaS dengan menggunakan kata kunci *ERP cloud* atau *CRM cloud* atau berbagai *<business process> cloud* lainnya.
+3.  [Getting Started Apache OFBiz](https://ofbiz.apache.org/business-users.html) membahas gambaran umum tentang Apache OFBiz. Pelajari juga [FAQ](https://ofbiz.apache.org/faqs.html).
+4.  [Dokumentasi Apache OFBiz](https://ofbiz.apache.org).
+
+```
+Latihan
+```
+
+1.  Install dan coba jalankan Apache OFBiz
+Langkah 1: Persiapan
+Pastikan Anda memiliki Java Development Kit (JDK) yang terinstal di sistem Anda. Apache OFBiz memerlukan JDK versi 8 atau lebih baru.
+
+Unduh paket distribusi Apache OFBiz dari situs resmi: Apache OFBiz Download Page
+
+Langkah 2: Ekstraksi dan Konfigurasi
+Ekstrak paket distribusi OFBiz ke direktori tujuan di sistem Anda.
+
+Buka terminal atau command prompt dan navigasikan ke direktori OFBiz yang baru saja Anda ekstrak.
+
+Salin file konfigurasi contoh:
+cp framework/base/config/example-ofbiz-component.xml framework/base/config/ofbiz-component.xml
+Langkah 3: Memulai Server OFBiz
+Dalam terminal atau command prompt, navigasikan ke direktori OFBiz.
+
+Jalankan server OFBiz dengan perintah:
+./gradlew cleanAll loadAll
+./gradlew ofbiz
+Proses ini akan memuat data awal dan menjalankan server OFBiz.
+
+Langkah 4: Akses Aplikasi OFBiz
+Buka browser dan akses http://localhost:8080.
+Anda akan melihat antarmuka login OFBiz. Anda dapat menggunakan kredensial contoh yang diberikan di dokumentasi OFBiz.
+Langkah 5: Menjalankan Aplikasi
+Setelah login, Anda akan melihat berbagai aplikasi yang dapat diakses.
+Anda dapat menjelajahi aplikasi OFBiz yang berbeda, termasuk manajemen produk, manajemen persediaan, penjualan, pembelian, dan lain-lain.
+
+Catatan Penting:
+Apache OFBiz adalah kerangka kerja yang kompleks, dan instalasi serta konfigurasinya dapat rumit tergantung pada tujuan dan kebutuhan Anda.
+Anda mungkin perlu menyesuaikan beberapa konfigurasi untuk menjalankan OFBiz dengan benar di lingkungan Anda.
+Pastikan untuk merujuk ke dokumentasi OFBiz untuk informasi lebih lanjut tentang konfigurasi dan penggunaan.
+Sebaiknya gunakan Apache OFBiz dalam lingkungan pengembangan terlebih dahulu sebelum menerapkannya dalam produksi.
+```
+Tugas
+```
+
+Dengan menggunakan fasilitas [demo](https://ofbiz.apache.org/ofbiz-demos.html), pilihlah E-Commerce webstore atau backend ERP. Setelah itu, buatlah panduan dasar pemakaiannya. Anda bebas memilih tema (misal - panduan berbelanja di Webstore E-Commerce). Gunakan kreativitas anda.
+Langkah 1: Akses Demo
+Buka browser dan akses https://demo-trunk.ofbiz.apache.org/ecommerce/control/main.
+
+Anda akan diarahkan ke antarmuka E-Commerce Webstore demo OFBiz.
+
+Langkah 2: Menjelajahi Produk
+Di halaman utama, Anda akan melihat produk-produk yang tersedia.
+
+Klik pada salah satu produk untuk melihat detailnya. Anda dapat melihat deskripsi, gambar, harga, dan opsi lainnya.
+
+Anda juga dapat menggunakan fitur pencarian atau navigasi kategori untuk menemukan produk yang Anda cari.
+
+Langkah 3: Menambahkan Produk ke Keranjang Belanja
+Setelah memilih produk, klik tombol "Tambahkan ke Keranjang Belanja".
+
+Anda akan melihat konfirmasi bahwa produk telah ditambahkan ke keranjang.
+
+Anda dapat melanjutkan untuk menambahkan produk lain atau lanjut ke pembayaran.
+
+Langkah 4: Proses Pembayaran
+Klik ikon keranjang di atas untuk membuka keranjang belanja.
+
+Dari sana, Anda dapat memeriksa daftar produk yang telah Anda tambahkan.
+
+Klik "Lanjutkan ke Pembayaran" untuk memulai proses pembayaran.
+
+Langkah 5: Mengisi Informasi Pembayaran
+Isi informasi pembayaran seperti alamat pengiriman, metode pembayaran, dan informasi kontak.
+
+Ikuti instruksi di antarmuka untuk mengisi informasi yang diperlukan.
+
+Langkah 6: Konfirmasi dan Selesaikan Pembayaran
+Review informasi pesanan Anda untuk memastikan semuanya benar.
+
+Klik tombol "Konfirmasi Pembayaran" atau sejenisnya untuk menyelesaikan proses pembayaran.
+
+Anda akan menerima konfirmasi bahwa pesanan Anda telah diproses.
