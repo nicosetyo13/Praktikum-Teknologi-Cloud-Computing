@@ -1,0 +1,89 @@
+# Praktikum Teknologi Cloud Computing - Minggu 3
+
+## Materi
+
+**Platform as A Service**
+
+## Tujuan
+
+1. Mahasiswa memahami pengertian PaaS
+2. Mahasiswa mampu menggunakan PaaS dari [cyclic.sh](https://cyclic.sh) untuk men-deploy aplikasi
+
+## Pembahasan
+
+1. Pengertian dan komponen PaaS
+2. Menggunakan layanan `cyclic` untuk deploy aplikasi di PaaS
+
+## Software yang Diperlukan
+
+* Sistem Operasi: Linux, Windows, Mac, FreeBSD, dan sistem operasi lain yang mendukung 
+
+## Pembelajaran
+
+```
+Materi dan Penjelasan
+```
+
+1. Pelajari [referensi](https://github.com/oldstager/academic/blob/master/silabi/teknologi-cloud-computing.md) nomor 5, 6, dan 7 untuk mendapatkan gambaran umum tentang PaaS.
+Platform as a Service (PaaS) adalah model layanan komputasi awan yang menyediakan lingkungan untuk mengembangkan, menguji, dan mendeploy aplikasi perangkat lunak. Dalam model PaaS, penyedia layanan awan mengelola infrastruktur fisik seperti server, penyimpanan, dan jaringan, sementara pengembang fokus pada pengembangan dan manajemen aplikasi mereka. Berikut ini gambaran umum tentang PaaS dengan penekanan pada Microsoft dan IBM:
+
+PaaS: Pengenalan Umum
+PaaS memungkinkan pengembang untuk membangun, menguji, dan mendeploy aplikasi perangkat lunak tanpa harus merisaukan infrastruktur dan aspek manajemen yang terkait. Ini membantu mengurangi kompleksitas dalam pengembangan aplikasi, meningkatkan produktivitas, dan memungkinkan tim untuk fokus pada fitur dan fungsionalitas yang lebih penting.
+
+Beberapa fitur umum dari PaaS meliputi:
+
+Lingkungan Pengembangan: PaaS menyediakan lingkungan pengembangan yang terpadu dan seringkali mencakup alat pengembangan, bahasa pemrograman, dan kerangka kerja yang telah disediakan.
+Manajemen Infrastruktur: Infrastruktur diatur oleh penyedia layanan, termasuk manajemen server, jaringan, dan skalabilitas.
+Dukungan Berbasis Web: Aplikasi PaaS dapat diakses melalui web browser, memungkinkan pengembang untuk berkolaborasi dan mengelola proyek dari mana saja.
+Otomasisasi: Otomatisasi pemeliharaan, skalabilitas, dan manajemen sumber daya membantu mengurangi kerja tangan yang diperlukan dari pengembang.
+Microsoft Azure sebagai Contoh PaaS
+Microsoft Azure menyediakan layanan PaaS yang kuat untuk pengembangan dan pengelolaan aplikasi. Beberapa layanan PaaS populer di Azure meliputi:
+
+Azure App Service: Layanan ini memungkinkan pengembangan, hosting, dan skalabilitas aplikasi web dan mobile.
+Azure Functions: Fungsi serverless yang memungkinkan pengembang menjalankan kode dalam tanggapan terhadap peristiwa.
+Azure SQL Database: Layanan database yang dikelola untuk aplikasi berbasis data.
+Azure Kubernetes Service (AKS): Layanan manajemen Kubernetes yang memfasilitasi penyiapan, pengelolaan, dan skalabilitas wadah.
+IBM Cloud sebagai Contoh PaaS
+IBM Cloud juga menyediakan layanan PaaS yang kuat untuk berbagai jenis aplikasi. Beberapa layanan PaaS populer di IBM Cloud meliputi:
+
+IBM Cloud Foundry: Platform yang memudahkan pengembangan, pengujian, dan pengiriman aplikasi.
+IBM Watson Studio: Platform untuk pengembangan, pelatihan, dan pengiriman model kecerdasan buatan.
+IBM Cloud Functions: Layanan serverless yang memungkinkan pengembangan fungsi yang diaktifkan oleh peristiwa.
+IBM Cloud Databases: Layanan manajemen basis data yang dikelola dan skalabilitas otomatis.
+Kesimpulan
+Platform as a Service (PaaS) adalah model layanan komputasi awan yang menyediakan lingkungan pengembangan dan pengelolaan aplikasi perangkat lunak. Baik Microsoft Azure maupun IBM Cloud adalah contoh penyedia layanan yang menawarkan beragam layanan PaaS untuk membantu pengembangan aplikasi secara lebih efisien tanpa harus khawatir tentang infrastruktur fisik.
+2. [Dokumentasi Cyclic](https://docs.cyclic.sh/)
+
+```
+Latihan
+```
+
+1.  Kerjakan **Deploy Some Code!** - **Quick Start** - **Deploy to Cyclic** di [dokumentasi cyclic](https://docs.cyclic.sh/)
+
+```
+Tugas
+```
+
+Kerjakan **Deploy Some Code** - **DIY**.
+Langkah 1: Persiapan Kode
+Pastikan kode Anda berada dalam keadaan siap untuk dideploy. Pastikan semua perubahan terbaru telah di-commit dan tidak ada perubahan yang terlewat.
+Langkah 2: Pilih Lingkungan
+Pilih lingkungan tempat Anda ingin mendeploy kode Anda. Ini bisa berupa server fisik, mesin virtual, layanan cloud seperti AWS, Azure, Google Cloud, atau platform layanan seperti Heroku.
+Langkah 3: Menyiapkan Lingkungan
+Jika menggunakan layanan cloud, pastikan Anda telah membuat instance atau lingkungan yang sesuai.
+Jika menggunakan server fisik atau mesin virtual, pastikan sistem operasi dan perangkat lunak yang diperlukan telah diinstal.
+Langkah 4: Transfer Kode
+Menggunakan Git: Clone repositori Anda ke lingkungan baru dengan perintah git clone.
+Melalui FTP/SFTP: Upload file-file kode Anda ke lingkungan target.
+Langkah 5: Konfigurasi Lingkungan
+Konfigurasi lingkungan sesuai dengan kebutuhan aplikasi Anda. Ini mungkin melibatkan mengatur variabel lingkungan, mengonfigurasi server web, dan mengatur basis data.
+Langkah 6: Instal Dependensi
+Jika aplikasi Anda memiliki dependensi atau paket, pastikan Anda menginstalnya di lingkungan baru. Ini mungkin melibatkan menjalankan perintah seperti npm install, pip install, atau sejenisnya tergantung pada bahasa pemrograman yang Anda gunakan.
+Langkah 7: Jalankan Aplikasi
+Menggunakan Server Web: Konfigurasi dan jalankan server web (seperti Apache, Nginx) untuk melayani aplikasi Anda.
+Jika menggunakan platform layanan seperti Heroku, Anda hanya perlu mengirimkan kode Anda dan platform akan menangani pengaturan dan menjalankan aplikasi.
+Langkah 8: Uji Aplikasi
+Buka aplikasi di browser atau perangkat lainnya untuk memastikan bahwa semua berjalan dengan baik di lingkungan baru.
+Langkah 9: Kelola dan Pemeliharaan
+Pastikan Anda memiliki mekanisme untuk memantau dan mengelola aplikasi setelah dideploy. Ini mungkin melibatkan pengaturan log, pemantauan performa, dan pemecahan masalah.
+Harap dicatat bahwa langkah-langkah ini hanya panduan umum dan sebenarnya dapat bervariasi tergantung pada alat, bahasa pemrograman, dan platform yang Anda gunakan. Selalu merujuk pada dokumentasi resmi alat atau layanan yang Anda pilih untuk informasi lebih lanjut.
