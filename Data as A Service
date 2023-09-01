@@ -1,0 +1,460 @@
+# Praktikum Teknologi Cloud Computing - Minggu 06
+
+## Materi
+
+**Data as A Service**
+
+## Tujuan
+
+1.  Mahasiswa memahami berbagai tipe software DBMS untuk mengelola berbagai model data.
+2.  Mahasiswa memahami keterkaitan teknologi Cloud Computing dengan DBMS dalam konteks Data as a Service.
+3.  Mahasiswa memahami arsitektur Data as A Service.
+4.  Mahasiswa memahami dan mampu mengimplementasikan Data as a Service menggunakan Go dan DBMS.
+
+## Pembahasan
+
+1.  Berbagai tipe software DBMS untuk mengelola berbagai model data
+2.  Pengertian Data as a Service dan Cloud Database
+3.  Arsitektur Data as a Service
+5.  Implementasi Data as a Service Menggunakan Go dan DBMS
+
+## Software yang Diperlukan
+
+* Sistem Operasi: Linux, Windows, Mac, FreeBSD, dan sistem operasi lain yang mendukung. 
+* *Compiler* [Go](https://golang.org/). bisa diperoleh di [halaman download Go](https://golang.org/dl/). 
+* [MySQL Community Edition](https://www.mysql.com/products/community/).
+* [MongoDB Community Server](https://www.mongodb.com/download-center/community)
+
+## Pembelajaran
+
+```
+Materi dan Penjelasan
+```
+
+1.  Pada dasarnya ada 2 tipe DBMS: [SQL](https://en.m.wikipedia.org/wiki/SQL) dan [NoSQL](https://en.wikipedia.org/wiki/NoSQL).
+2.  Pelajari [Data as a Service di Wikipedia](https://en.wikipedia.org/wiki/Data_as_a_service) serta [Cloud database](https://en.wikipedia.org/wiki/Cloud_database).
+3.  Arsitektur Data as a Service biasanya diwujudukan dengan menggunakan arsitektur [microservices](https://microservices.io/). *Compiler* dan *development tools* bersama dengan REST atau gRPC atau GraphQL serta berbagai protokol untuk implementasi *function as a service* digunakan untuk membangun *service*. Akses ke data biasanya melibatkan DBMS (SQL maupun NoSQL). Untuk Go, bisa digunakan [Gin](https://github.com/gin-gonic/gin) untuk [menghasilkan data JSON](https://github.com/gin-gonic/gin#api-examples) dalam respon.
+4.  Akses ke DBMS di Go dilakukan dengan menggunakan pustaka standar serta driver. Untuk MySQL serta berbagai DBMS SQL (RDBMS), digunakan paket [database/sql](http://go-database-sql.org/). Untuk NoSQL (contoh: MongoDB), digunakan [driver MongoDB untuk Go](https://github.com/mongodb/mongo-go-driver).
+
+```
+Latihan
+```
+
+1.  Install Go, MySQL, dan MongoDB
+2.  Buat 2 contoh program Go masing-masing untuk koneksi dan membaca data dari MySQL dan MongoDB.
+3.  Dengan menggunakan Gin, buatlah RESTful API untuk membaca dara dari MySQL dan MongoDB tersebut.
+
+Langkah 1: Instalasi Go, MySQL, dan MongoDB:
+Instal Go:
+Unduh dan instal Go dari situs resmi: https://golang.org/
+Pastikan Anda mengatur PATH ke direktori instalasi Go.
+Instal MySQL:
+Unduh dan instal MySQL dari situs resmi: https://dev.mysql.com/downloads/installer/
+Ikuti panduan instalasi yang disediakan.
+Instal MongoDB:
+Unduh dan instal MongoDB dari situs resmi: https://www.mongodb.com/try/download/community
+Ikuti panduan instalasi yang disediakan.
+
+
+Langkah 2: Contoh Program Go untuk Koneksi dan Membaca Data:
+Contoh Program untuk Koneksi dan Membaca Data dari MySQL:
+package main
+import (
+	"database/sql"
+	"fmt"
+	"log"
+	_ "github.com/go-sql-driver/mysql"
+)
+func main() {
+	db, err := sql.Open("mysql", "username:password@tcp(127.0.0.1:3306)/database_name")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Close()
+
+	rows, err := db.Query("SELECT id, name FROM users")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var id int
+		var name string
+		err := rows.Scan(&id, &name)
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Printf("ID: %d, Name: %s\n", id, name)
+	}
+}
+
+Contoh Program untuk Koneksi dan Membaca Data dari MongoDB:
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
+)
+
+func main() {
+	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
+	client, err := mongo.Connect(context.Background(), clientOptions)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer client.Disconnect(context.Background())
+
+	collection := client.Database("testdb").Collection("users")
+	cur, err := collection.Find(context.Background(), nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer cur.Close(context.Background())
+
+	for cur.Next(context.Background()) {
+		var result map[string]interface{}
+		err := cur.Decode(&result)
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println(result)
+	}
+}
+
+
+Langkah 3: Membuat RESTful API dengan Gin:
+
+
+Instal framework Gin dengan menjalankan perintah berikut di terminal:
+go get -u github.com/gin-gonic/gin
+Contoh Program untuk Membuat RESTful API dengan Gin:
+package main
+
+
+import (
+	"fmt"
+	"log"
+
+	"github.com/gin-gonic/gin"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
+	"golang.org/x/net/context"
+)
+
+func main() {
+	r := gin.Default()
+	r.GET("/mysql-data", func(c *gin.Context) {
+		// Kode untuk membaca data dari MySQL
+		// ...
+		c.JSON(200, gin.H{
+			"message": "Data from MySQL",
+			// ...
+		})
+	})
+
+	r.GET("/mongodb-data", func(c *gin.Context) {
+		// Kode untuk membaca data dari MongoDB
+		// ...
+		c.JSON(200, gin.H{
+			"message": "Data from MongoDB",
+			// ...
+		})
+	})
+
+	err := r.Run(":8080")
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+Pastikan Anda mengganti kredensial dan konfigurasi sesuai dengan lingkungan Anda (seperti nama database, nama koleksi, dll.). Setelah membuat program-program ini, Anda dapat menjalankannya dengan perintah go run nama_file.go. Selanjutnya, Anda dapat mengakses RESTful API menggunakan peramban atau alat pengujian API seperti Postman.
+Tugas
+Buat 2 program menggunakan salah satu pustaka yang ada di implementasi GraphQL di Go untuk membaca data dari MySQL serta MongoDB dan memberikan respon GraphQL, 1 program untuk MySQL, 1 program untuk MongoDB.
+
+
+Untuk mengimplementasikan GraphQL di Go dan membaca data dari MySQL serta MongoDB, kita akan menggunakan pustaka "graphql-go" untuk mengelola schema dan resolvers GraphQL. Berikut adalah contoh program untuk membaca data dari MySQL dan MongoDB melalui GraphQL:
+
+
+Langkah 1: Instalasi Pustaka:
+
+
+Install pustaka "graphql-go" dengan menjalankan perintah berikut di terminal:
+go get github.com/graphql-go/graphql
+Contoh Program GraphQL untuk Membaca Data dari MySQL:
+package main
+
+
+import (
+	"fmt"
+	"log"
+	"net/http"
+
+	"github.com/graphql-go/graphql"
+	_ "github.com/go-sql-driver/mysql"
+	"database/sql"
+)
+
+var db *sql.DB
+
+type User struct {
+	ID   int    `json:"id"`
+	Name string `json:"name"`
+}
+
+func initDB() {
+	dsn := "username:password@tcp(127.0.0.1:3306)/database_name"
+	var err error
+	db, err = sql.Open("mysql", dsn)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func main() {
+	initDB()
+
+	fields := graphql.Fields{
+		"user": &graphql.Field{
+			Type: graphql.NewList(userType),
+			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+				rows, err := db.Query("SELECT id, name FROM users")
+				if err != nil {
+					return nil, err
+				}
+				defer rows.Close()
+
+				var users []User
+				for rows.Next() {
+					var user User
+					err := rows.Scan(&user.ID, &user.Name)
+					if err != nil {
+						return nil, err
+					}
+					users = append(users, user)
+				}
+				return users, nil
+			},
+		},
+	}
+
+	rootQuery := graphql.ObjectConfig{Name: "RootQuery", Fields: fields}
+	schemaConfig := graphql.SchemaConfig{Query: graphql.NewObject(rootQuery)}
+	schema, err := graphql.NewSchema(schemaConfig)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	http.HandleFunc("/graphql", func(w http.ResponseWriter, r *http.Request) {
+		result := graphql.Do(graphql.Params{
+			Schema:        schema,
+			RequestString: r.URL.Query().Get("query"),
+		})
+		if len(result.Errors) > 0 {
+			log.Printf("GraphQL error: %v", result.Errors)
+		}
+		fmt.Fprintf(w, "%+v\n", result)
+	})
+
+	log.Println("Server is running on port 8080")
+	http.ListenAndServe(":8080", nil)
+}
+Contoh Program GraphQL untuk Membaca Data dari MongoDB
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+	"net/http"
+
+	"github.com/graphql-go/graphql"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
+)
+
+var client *mongo.Client
+
+type User struct {
+	ID   int    `json:"id"`
+	Name string `json:"name"`
+}
+
+func initMongoDB() {
+	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
+	var err error
+	client, err = mongo.Connect(context.Background(), clientOptions)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func main() {
+	initMongoDB()
+
+	fields := graphql.Fields{
+		"user": &graphql.Field{
+			Type: graphql.NewList(userType),
+			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+				collection := client.Database("testdb").Collection("users")
+				cur, err := collection.Find(context.Background(), nil)
+				if err != nil {
+					return nil, err
+				}
+				defer cur.Close(context.Background())
+
+				var users []User
+				for cur.Next(context.Background()) {
+					var user User
+					err := cur.Decode(&user)
+					if err != nil {
+						return nil, err
+					}
+					users = append(users, user)
+				}
+				return users, nil
+			},
+		},
+	}
+
+	rootQuery := graphql.ObjectConfig{Name: "RootQuery", Fields: fields}
+	schemaConfig := graphql.SchemaConfig{Query: graphql.NewObject(rootQuery)}
+	schema, err := graphql.NewSchema(schemaConfig)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	http.HandleFunc("/graphql", func(w http.ResponseWriter, r *http.Request) {
+		result := graphql.Do(graphql.Params{
+			Schema:        schema,
+			RequestString: r.URL.Query().Get("query"),
+		})
+		if len(result.Errors) > 0 {
+			log.Printf("GraphQL error: %v", result.Errors)
+		}
+		fmt.Fprintf(w, "%+v\n", result)
+	})
+
+	log.Println("Server is running on port 8080")
+	http.ListenAndServe(":8080", nil)
+}
+Pastikan Anda mengganti kredensial dan konfigurasi sesuai dengan lingkungan Anda (seperti nama database, nama koleksi, dll.). Anda dapat mengakses GraphQL melalui URL http://localhost:8080/graphql dengan mengirimkan query melalui parameter "query". 
+
+Tugas
+```
+
+Buat 2 program menggunakan salah satu pustaka yang ada di [implementasi GraphQL di Go](https://graphql.org/code/#go) untuk membaca data dari MySQL serta MongoDB dan memberikan respon GraphQL, 1 program untuk MySQL, 1 program untuk MongoDB.
+Program untuk MySQL (menggunakan pustaka github.com/graphql-go/graphql):
+package main
+
+import (
+	"database/sql"
+	"fmt"
+	"log"
+
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/graphql-go/graphql"
+	"github.com/graphql-go/handler"
+)
+
+func main() {
+	db, err := sql.Open("mysql", "username:password@tcp(hostname:port)/dbname")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Close()
+
+	rootQuery := graphql.NewObject(
+		graphql.ObjectConfig{
+			Name: "RootQuery",
+			Fields: graphql.Fields{
+				"user": &graphql.Field{
+					Type: graphql.String,
+					Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+						// Query data from MySQL using db.QueryRow() or similar methods
+						// Example: rows.Scan(&userData)
+						userData := "User data from MySQL"
+						return userData, nil
+					},
+				},
+			},
+		},
+	)
+
+	schemaConfig := graphql.SchemaConfig{Query: rootQuery}
+	schema, err := graphql.NewSchema(schemaConfig)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	h := handler.New(&handler.Config{
+		Schema:   &schema,
+		Pretty:   true,
+		GraphiQL: true,
+	})
+
+	fmt.Println("Server started at http://localhost:8080/graphql")
+	http.Handle("/graphql", h)
+	log.Fatal(http.ListenAndServe(":8080", nil))
+}
+Program untuk MongoDB (menggunakan pustaka github.com/graphql-go/graphql dan go.mongodb.org/mongo-driver):
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+	"net/http"
+
+	"github.com/graphql-go/graphql"
+	"github.com/graphql-go/handler"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
+)
+
+func main() {
+	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
+	client, err := mongo.Connect(context.Background(), clientOptions)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer client.Disconnect(context.Background())
+
+	db := client.Database("mydb")
+
+	rootQuery := graphql.NewObject(
+		graphql.ObjectConfig{
+			Name: "RootQuery",
+			Fields: graphql.Fields{
+				"user": &graphql.Field{
+					Type: graphql.String,
+					Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+						// Query data from MongoDB using collection.FindOne() or similar methods
+						// Example: userDoc.Decode(&userData)
+						userData := "User data from MongoDB"
+						return userData, nil
+					},
+				},
+			},
+		},
+	)
+
+	schemaConfig := graphql.SchemaConfig{Query: rootQuery}
+	schema, err := graphql.NewSchema(schemaConfig)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	h := handler.New(&handler.Config{
+		Schema:   &schema,
+		Pretty:   true,
+		GraphiQL: true,
+	})
+
+	fmt.Println("Server started at http://localhost:8080/graphql")
+	http.Handle("/graphql", h)
+	log.Fatal(http.ListenAndServe(":8080", nil))
+}
